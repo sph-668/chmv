@@ -18,6 +18,13 @@
 
 
 <tr><td>
+    {% for post in posts %}
+    <div>
+        <p>teacher: {{ post.teacher }}</p>
+        <h1><a href="">{{ post.group }}</a></h1>
+        <p>{{ post.cabinet|linebreaksbr }}</p>
+    </div>
+{% endfor %}
 <h1> <p ALIGN="center">
   Центр детского развития KidsGrowth
   </p>

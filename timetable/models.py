@@ -14,5 +14,9 @@ class Mytimetable(models.Model):
     def show(self):
         pass
 
+class Users(models.Model):
+    login = models.TextField()
+    password = models.TextField()
+
 
 # Create your models here.

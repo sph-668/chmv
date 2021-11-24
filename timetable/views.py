@@ -9,3 +9,6 @@ def data_for_user(request):
 
 def lessons_for_user(request):
     return render(request, 'timetable/lessons_for_user.html')
+
+def enter(request):
+    return render(request, 'timetable/enter.html')

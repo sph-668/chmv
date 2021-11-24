@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+{% load static %}
+
+
 <html>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
  <head>
   <meta charset="utf-8">
   <title>Просмотр занятий по выбранной дате</title>
-  <link rel="stylesheet" href="style.css">
 
  </head>
  <body>
@@ -21,11 +23,11 @@
   </p>
   </h1></td></tr>
 <tr><td colspan="2">
-			<a href="index.html"><div class="button" background="#9754e7">Главная</div></a>
+			<a href="{% url 'index' %}"><div class="button" background="#9754e7">Главная</div></a>
 
-			<a href="data_for_user.html"><div class="button_active">Просмотр списка занятий на выбранную дату</div></a>
+			<a href="#"><div class="button_active">Просмотр списка занятий на выбранную дату</div></a>
 
-			<a href="lessons_for_user.html"><div class="button">Поиск занятий по нескольким полям</div></a></td>
+			<a href="{% url 'lessons_for_user' %}"><div class="button">Поиск занятий по нескольким полям</div></a></td>
 </tr>
   <tr><td><br><br><br><br>
   <form>

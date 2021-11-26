@@ -3,17 +3,17 @@
 
 <html>
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
- <head>
+<head>
   <meta charset="utf-8">
-  <title>Центр детского развития</title>
-   </head> 
+  <title>Центр десткого развития</title>
+   </head>
 
     <body>
 
 <table class="main">
 
 <tr><td>
-<div class = "to_enter"><br><a href="{% url 'index' %}">Выйти из учетной записи</a><br></div>
+<div class = "to_enter"><br><a href="index.html">Выйти из учетной записи</a><br></div>
 </td></tr>
 
 
@@ -28,43 +28,31 @@
 			<a href="data_for_admin.html"><div class="button">Просмотр списка занятий на выбранную дату</div></a>
 
 			<a href='lessons_for_admin.html'><div class="button">Поиск занятий по нескольким полям</div></a>
-			
+
 			<a href="new_group.html"><div class="button" background="#9754e7">Добавить новую группу</div></a>
-			
+
 			<a href="new_lesson.html"><div class="button" background="#9754e7">Добавить занятия</div></a>
-			
+
 			<a href=#><div class="button_active" background="#9754e7">Добавить учителя</div></a>
 </td></tr>
   <tr><td><br><br><br>
-  <form method="post">
-      {% csrf_token %}
+	<form method="post">
+		{% csrf_token %}
    <div class="form_r auto">
 		<div class="input-form_r">
 		<h4><p>Учитель:</h4>
-            {{ form.name }}
+			{{ form.name }}
 		</div>
 		<div class="input-form_r">
 			<h4><p>Направление:<br><br>
-			<span class="custom-dropdown">
-                {{ form.lesson }}
-			</span></p></h4>
+				{{ form.lesson }}
 		</div>
 		<div class="input-form_r">
 			 <input type="submit" value="Добавить"></p>
 		</div>
+	   <p align="center" style="color: #FF0000"><strong>{{ message }}</strong></p><br>
 	</div>
   </form>
-
-	  <form method=POST action="" class="input-form_r custom-dropdown">
-        {{ location_list }}
-    </form>
-
-
-
-
-
-
-
   </td></tr>
   </table>
   

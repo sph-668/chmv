@@ -8,12 +8,12 @@ class Group(models.Model):
     name = models.TextField()
     age = models.TextField()
 
+
 class Subject(models.Model):
     sub = models.TextField()
 
     def __str__(self):
         return self.sub
-
 
 
 class Teacher(models.Model):
@@ -27,9 +27,5 @@ class Table(models.Model):
     cabinet = models.IntegerField()
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-
-
-
-
 
 # Create your models here.

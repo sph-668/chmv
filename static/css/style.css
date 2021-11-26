@@ -1,0 +1,284 @@
+h1 {
+    color: #893d18; 
+    padding: 2px; 
+	margin: auto;
+
+   }
+
+body {
+    margin: 0;  
+    height: 100%; 
+    background: url(img/center.jpg); 
+   background-size: cover; 
+	background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+   }
+   
+html { height: 100%; }
+    
+table {
+   margin: auto;
+	
+	
+}
+td {
+   text-align: center;
+   align:center;
+}
+
+.main {
+	width: 80%;	
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.information {
+	font-size: 25px;
+	font-family: Arial, sans-serif;
+	background: rgba(255, 255, 255, 0.7);
+	width: 80%;
+	margin: auto;
+	
+}
+
+.to_enter {
+	font-size: 20px;
+	font-family: Arial;
+	font-weight: bold;
+	background: rgba(255, 255, 255, 0.9);
+	text-align: right;
+}
+
+
+.form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	background: rgba(0,0,0,.7);
+}
+
+.form h1 {
+	margin: 30px 100px;
+	padding: 0;
+	text-align: center;
+	color: #fff;
+	font-size: 30px;
+	text-transform: uppercase;
+}
+
+.input-form {
+	margin: 15px 40px;
+	text-align: center;
+}
+
+.input-form input {
+	padding: 10px;
+	width: 100%;
+	color: #fff;
+	font-size: 20px;
+	background: none;
+	outline: none;
+	border: 1px solid #fff;
+	box-sizing: border-box;
+}
+
+.input-form input[type="text"]:focus, .input-form input[type="password"]:focus {
+	border: 1px solid #9754e7;
+}
+
+.input-form input[type="submit"] {
+	margin-top: 20px;
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: none;
+	background: #9c96e7;
+	transition: .3s;
+}
+
+.input-form input[type="submit"]:hover {
+	background: #9754e7;
+}
+
+.form a {
+	display: block;
+	padding: 0 0 30px;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+	transition: .3s;
+}
+
+.form a:hover {
+	color: #0fc3f5;
+}
+
+
+.button {
+	font-weight: bold;
+	font-size: 22px;
+	background-color: #9c96e7;
+    border: none;
+    color: white;
+    padding: 25px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: -4px;
+	margin-left: -4px;
+	margin-top: 2px;
+}
+
+.button:hover {
+    background-color: #9754e7;
+}
+
+.button_active {
+		font-weight: bold;
+		font-size: 22px;
+	background-color: #9754e7;
+    border: none;
+    color: white;
+    padding: 25px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin:0;
+}
+
+.btn_to_index {
+	font-size: 25px;
+	background-color: #9c96e7;
+    border: none;
+    color: white;
+    padding: 20px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+	margin-left:10%;
+}
+
+.btn_to_index:hover {
+	background-color: #9754e7;
+}
+
+.form_r {
+	margin-left:130px;
+	width: 350px;
+	background: rgba(0,0,0,.7);
+}
+
+.form_r h4 {
+	margin: 0px 10px;
+	padding: 2px;
+	text-align: center;
+	color: #fff;
+	font-size: 15px;
+	text-transform: uppercase;
+}
+
+.input-form_r {
+	margin: 10px 30px;
+	text-align: center;
+}
+
+.input-form_r input {
+	padding: 10px;
+	width: 99%;
+	color: #fff;
+	font-size: 20px;
+	background: none;
+	outline: none;
+	border: 1px solid #fff;
+	box-sizing: border-box;
+}
+
+.input-form_r input[type="date"] {
+	font-size: 15px;
+}
+
+
+
+.input-form_r input[type="submit"] {
+	width: 75%;
+	margin-top: 10px;
+	margin-bottom: 16px;
+	color: black;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: none;
+	background: rgb(237,205,170);
+	transition: .3s;
+}
+
+.input-form_r input[type="submit"]:hover {
+	background: #9754e7;
+}
+
+.form_r a {
+	display: inline-block;
+	padding: 0 0 30px;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+	transition: .3s;
+}
+
+.form_r a:hover {
+	color: #0fc3f5;
+}
+
+.rasp{
+	margin-top: 60px;
+	width: 450px;
+  height: 300px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid black;
+  font-size: 20px;
+}
+
+.custom-dropdown select {
+  cursor:pointer;
+  background: rgba(0, 0, 0);
+  color: #fff;
+  font-size: inherit;
+  padding: .5em;
+  padding-right: 2.5em;	
+  border: 1px solid white;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button; /* hide default arrow in chrome OSX */
+}
+
+.line{
+display: inline-block;
+}
+
+.auto {
+	
+	margin:auto;
+}
+
+.close {
+	float:left;
+}
+
+.len {
+	width: 600px;
+}
+
+.wrong_password {
+  color: red;
+  font-size: 20px;
+  align:center;
+}

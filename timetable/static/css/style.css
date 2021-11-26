@@ -276,3 +276,9 @@ display: inline-block;
 .len {
 	width: 600px;
 }
+
+.wrong_password {
+  color: red;
+  font-size: 20px;
+  align:center;
+}

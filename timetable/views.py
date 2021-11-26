@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Mytimetable
+from .forms import AppendTeacher
+from .forms import *
 
 def index(request):
     return render(request, 'timetable/index.html')
@@ -15,4 +16,11 @@ def enter(request):
 
 def index_for_admin(request):
     return render(request, 'timetable/index_for_admin.html')
+
+def new_teacher(request):
+    form = AppendTeacher(request.POST)
+    if form.is_valid():
+        teacher = form.save(commit=False)
+        teacher.save()
+    return render(request, 'timetable/new_teacher.html')
 

@@ -13,7 +13,7 @@
 <table class="main">
 
 <tr><td>
-<div class = "to_enter"><br><a href="index.html">Выйти из учетной записи</a><br></div>
+<div class = "to_enter"><br><a href="{% url 'index' %}">Выйти из учетной записи</a><br></div>
 </td></tr>
 
 <tr><td>
@@ -32,7 +32,7 @@
 			
 			<a href="new_lesson.html"><div class="button" background="#9754e7">Добавить занятия</div></a>
 			
-			<a href="new_teacher.html"><div class="button" background="#9754e7">Добавить учителя</div></a>
+			<a href="{% url 'new_teacher' %}"><div class="button" background="#9754e7">Добавить учителя</div></a>
 </td></tr>
   <tr><td><p align = center><div class = "information">Тут будет всякая главная информация о центре. <br>
   <br>Эту страничку видно ТОЛЬКО админу</p></td></tr>

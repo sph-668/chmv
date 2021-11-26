@@ -1,6 +1,8 @@
-<!DOCTYPE html>
+{% load static %}
+
+
 <html>
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
  <head>
   <meta charset="utf-8">
   <title>Центр десткого развития</title>
@@ -11,7 +13,7 @@
 <table class="main">
 
 <tr><td>
-<div class = "to_enter"><br><a href="index.html">Выйти из учетной записи</a><br></div>
+<div class = "to_enter"><br><a href="{% url 'index' %}">Выйти из учетной записи</a><br></div>
 </td></tr>
 
 

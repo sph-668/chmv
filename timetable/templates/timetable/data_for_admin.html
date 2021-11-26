@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+{% load static %}
+
+
 <html>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
  <head>
   <meta charset="utf-8">
   <title>Просмотр занятий по выбранной дате</title>
-  <link rel="stylesheet" href="style.css">
 
  </head>
  <body>
@@ -11,7 +13,7 @@
  <table class="main">
 
 <tr><td colspan="2">
-<div class = "to_enter"><br><a href="index.html">Выйти из учетной записи</a><br></div>
+<div class = "to_enter"><br><a href="{% url 'index' %}">Выйти из учетной записи</a><br></div>
 </td></tr>
 
 <tr><td colspan="2">

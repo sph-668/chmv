@@ -1,8 +1,11 @@
 from django import forms
 
 from .models import Teacher
+from .models import Subject
 
 
 class AppendTeacher(forms.Form):
-    name = forms.ModelChoiceField(queryset=Teacher.objects.all().order_by('name'))
-    lesson = forms.CharField(max_length=50)
+    name = forms.CharField(max_length=50, label='Направление')
+    lesson = forms.ModelChoiceField(queryset=Subject.objects.values_list('sub', flat = True))
+
+

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import *
+from .models import *
 
 def index(request):
     return render(request, 'timetable/index.html')
@@ -17,14 +18,41 @@ def index_for_admin(request):
     return render(request, 'timetable/index_for_admin.html')
 
 def new_teacher(request):
+    message = ''
     if request.method == "POST":
         form = AppendTeacher(request.POST)
         if form.is_valid():
-            teacher = Teacher()
-            teacher.name = form.cleaned_data.get("name")
-            teacher.lesson = form.cleaned_data.get("lesson")
-            teacher.save()
+            name_ = form.cleaned_data.get("name")
+            lesson_ = form.cleaned_data.get("lesson")
+            if (not name_.isalpha()):
+                message = 'Некорректные данные'
+            else:
+                message = 'Добавлено'
+                teacher = Teacher(name = name_, lesson = lesson_)
+                teacher.save()
+        else:
+            message = 'Некорректные данные'
     else:
         form = AppendTeacher()
     return render(request, 'timetable/new_teacher.html',{
-          'form': form,})
+          'form': form, 'message': message})
+
+def new_group(request):
+    message = ''
+    if request.method == "POST":
+        form = AppendGroup(request.POST)
+        if form.is_valid():
+            name_ = form.cleaned_data.get("name")
+            age_ = form.cleaned_data.get("age")
+            if (not name_.isalpha()):
+                message = 'Некорректные данные'
+            else:
+                message = 'Добавлено'
+                group = Group(name = name_, age = age_)
+                group.save()
+        else:
+            message = 'Некорректные данные'
+    else:
+        form = AppendGroup()
+    return render(request, 'timetable/new_group.html', {
+        'form': form, 'message': message})

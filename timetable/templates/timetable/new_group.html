@@ -36,25 +36,21 @@
 			<a href="new_teacher.html"><div class="button" background="#9754e7">Добавить учителя</div></a>
 </td></tr>
   <tr><td><br><br><br>
-  <form>
+  <form method="post">
+		{% csrf_token %}
    <div class="form_r auto">
 		<div class="input-form_r">
-		<h4><p>Название группы:</h4>
-			<input type="text" placeholder="Название"></p>
+		<h4><p>Название:</h4>
+			{{ form.name }}
 		</div>
-		<div class="input-form_r">
-			<h4><p>Возрастная категория:<br><br> 
-			<span class="custom-dropdown">
-				<select name="age" class="input-form_r input">
-				<option value="1">2-3 года</option>
-				<option value="2">4-5 лет</option>
-				<option value="3">6-7 лет</option>
-				</select>
-			</span></p></h4>
+		<div class="input-form_r custom-dropdown">
+			<h4><p>Возрастная группа:<br><br>
+				{{ form.age }}
 		</div>
 		<div class="input-form_r">
 			 <input type="submit" value="Добавить"></p>
 		</div>
+	   <p align="center" style="color: #FF0000"><strong>{{ message }}</strong></p><br>
 	</div>
   </form>
   </td></tr>

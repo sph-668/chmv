@@ -249,7 +249,7 @@ td {
   cursor:pointer;
   background: rgba(0, 0, 0);
   color: #fff;
-  font-size: 25px;
+  font-size: inherit;
   padding: .5em;
   padding-right: 2.5em;	
   border: 1px solid white;

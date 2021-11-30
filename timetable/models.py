@@ -19,16 +19,21 @@ class Age(models.Model):
     age = models.CharField(max_length=20)
 
 class Teacher(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
     lesson = models.CharField(max_length=40)
 
 
 class Table(models.Model):
     time = models.TimeField()
-    date = models.DateField()
+    week = models.CharField(max_length=30)
     cabinet = models.IntegerField()
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     teacher = models.CharField(max_length=40)
     lesson = models.CharField(max_length=40)
+
+
+class Days_of_the_week(models.Model):
+    day = models.CharField(max_length=30)
+
 
 # Create your models here.

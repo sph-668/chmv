@@ -24,8 +24,11 @@ def new_teacher(request):
         if form.is_valid():
             name_ = form.cleaned_data.get("name")
             lesson_ = form.cleaned_data.get("lesson")
-            if (not name_.isalpha()):
+            s = name_.replace(' ', '')
+            if (not s.isalpha()):
                 message = 'Некорректные данные'
+            elif Teacher.objects.filter(name=name_, lesson=lesson_).exists():
+                message = 'Эти данные уже есть в базе данных'
             else:
                 message = 'Добавлено'
                 teacher = Teacher(name = name_, lesson = lesson_)
@@ -44,8 +47,11 @@ def new_group(request):
         if form.is_valid():
             name_ = form.cleaned_data.get("name")
             age_ = form.cleaned_data.get("age")
+            print()
             if (not name_.isalpha()):
                 message = 'Некорректные данные'
+            elif Group.objects.filter(name=name_).exists():
+                message = 'Такая группа уже существует'
             else:
                 message = 'Добавлено'
                 group = Group(name = name_, age = age_)
@@ -56,3 +62,7 @@ def new_group(request):
         form = AppendGroup()
     return render(request, 'timetable/new_group.html', {
         'form': form, 'message': message})
+
+def new_lesson(request):
+
+    return render(request, 'timetable/new_lesson.html')

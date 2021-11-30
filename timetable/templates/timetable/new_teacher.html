@@ -13,7 +13,7 @@
 <table class="main">
 
 <tr><td>
-<div class = "to_enter"><br><a href="index.html">Выйти из учетной записи</a><br></div>
+<div class = "to_enter"><br><a href="{% url 'index' %}">Выйти из учетной записи</a><br></div>
 </td></tr>
 
 
@@ -23,15 +23,15 @@
   </p>
   </h1></td></tr>
 <tr><td>
-			<a href="index_for_admin.html"><div class="button" background="#9754e7">Главная</div></a>
+			<a href="{% url 'index_for_admin' %}"><div class="button" background="#9754e7">Главная</div></a>
 
 			<a href="data_for_admin.html"><div class="button">Просмотр списка занятий на выбранную дату</div></a>
 
 			<a href='lessons_for_admin.html'><div class="button">Поиск занятий по нескольким полям</div></a>
 
-			<a href="new_group.html"><div class="button" background="#9754e7">Добавить новую группу</div></a>
+			<a href="{% url 'new_group' %}"><div class="button" background="#9754e7">Добавить новую группу</div></a>
 
-			<a href="new_lesson.html"><div class="button" background="#9754e7">Добавить занятия</div></a>
+			<a href="{% url 'new_lesson' %}"><div class="button" background="#9754e7">Добавить занятия</div></a>
 
 			<a href=#><div class="button_active" background="#9754e7">Добавить учителя</div></a>
 </td></tr>

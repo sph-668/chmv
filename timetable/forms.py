@@ -2,6 +2,12 @@ from django import forms
 
 from .models import *
 
+from django.forms import Field
+from django.utils.translation import ugettext_lazy
+Field.default_error_messages = {
+    'required': ugettext_lazy("This field is mandatory."),
+}
+
 
 my_default_errors = {
     'required': 'Заполните поле',
@@ -9,8 +15,10 @@ my_default_errors = {
 }
 
 
+
+
 class AppendTeacher(forms.Form):
-    name = forms.CharField(max_length=50, error_messages=my_default_errors)
+    name = forms.CharField(max_length=50, error_messages=my_default_errors, required=True)
     subjects = list(Subject.objects.values_list('sub', flat = True))
     sub = []
     for i in range (len(subjects)):

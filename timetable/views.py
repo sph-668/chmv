@@ -28,7 +28,7 @@ def new_teacher(request):
             if (not s.isalpha()):
                 message = 'Некорректные данные'
             elif Teacher.objects.filter(name=name_, lesson=lesson_).exists():
-                message = 'Эти данные уже есть в базе данных'
+                message = 'Эти данные уже были добавлены ранее'
             else:
                 message = 'Добавлено'
                 teacher = Teacher(name = name_, lesson = lesson_)

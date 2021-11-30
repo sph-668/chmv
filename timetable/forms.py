@@ -42,6 +42,13 @@ class AppendLesson(forms.Form):
         days_of_the_week.append([week[i], week[i]])
 
 
+class Show_on_date_user(forms.Form):
+    temp = list(Group.objects.values_list('name', flat=True))
+    groups = []
+    for i in range(len(temp)):
+        groups.append([temp[i], temp[i]])
+    name = forms.ChoiceField(choices=groups)
+    date = forms.DateField()
 
 
 

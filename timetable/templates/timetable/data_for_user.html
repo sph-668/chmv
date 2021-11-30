@@ -29,31 +29,26 @@
 
 			<a href="{% url 'lessons_for_user' %}"><div class="button">Поиск занятий по нескольким полям</div></a></td>
 </tr>
-  <tr><td><br><br><br><br>
+  <tr><td colspan="3"><br><br><br><br>
   <form>
-   <div class="form_r">
+   <div class="form_r auto">
 		<div class="input-form_r">
 			<h4><p>Выберите группу:<br><br> 
-			<span class="custom-dropdown">
-				<select name="num" class="input-form_r input">
-				<option value="1">Пчёлки</option>
-				<option value="2">Бабочки</option>
-				<option value="3">Солнышки</option>
-				<option value="4">Звёздочки</option>
-				</select>
-			</span></p></h4>
+			</p></h4>
+            {{ form.name }}
 		</div>
 		
 		<div class="input-form_r">
-			<h4><p>Выберите дату: <br><br><input type="date" name="calendar"></h4>
+			<h4><p>Выберите дату: <br><br><input type="date" {{form.date}}</h4>
 		</div>
 		<div class="input-form_r">
 			 <input type="submit" value="Найти"></p>
 		</div>
 	</div>
   </form>
-  </td><td>
-</div><div class = "line">
+  </td></tr>
+     <tr><td>
+</div><br><div>
   <table class = "rasp">
   <colgroup>
     <col span="2">

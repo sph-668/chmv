@@ -1,12 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import *
 from .models import *
+from .mymodule import *
+
 
 def index(request):
     return render(request, 'timetable/index.html')
 
 def data_for_user(request):
-    return render(request, 'timetable/data_for_user.html')
+    name = ''
+    if request.method == "GET":
+        form = Show_on_date_user(request.GET)
+        if form.is_valid():
+            name_ = form.cleaned_data.get("name")
+            date_ = form.cleaned_data.get("date")
+            print (name_, date_)
+            print(parse(str(date_)))
+    else:
+        form = Show_on_date_user()
+    return render(request, 'timetable/data_for_user.html', {'form': form})
 
 def lessons_for_user(request):
     return render(request, 'timetable/lessons_for_user.html')
@@ -66,3 +78,4 @@ def new_group(request):
 def new_lesson(request):
 
     return render(request, 'timetable/new_lesson.html')
+

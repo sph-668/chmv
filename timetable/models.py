@@ -25,7 +25,7 @@ class Teacher(models.Model):
 
 class Table(models.Model):
     time = models.TimeField()
-    week = models.CharField(max_length=30)
+    day_of_week = models.CharField(max_length=30)
     cabinet = models.IntegerField()
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     teacher = models.CharField(max_length=40)
@@ -34,6 +34,12 @@ class Table(models.Model):
 
 class Days_of_the_week(models.Model):
     day = models.CharField(max_length=30)
+
+class Cabinets(models.Model):
+    cab = models.IntegerField()
+
+class Time(models.Model):
+    time = models.TimeField()
 
 
 # Create your models here.

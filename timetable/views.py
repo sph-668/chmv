@@ -8,17 +8,28 @@ def index(request):
     return render(request, 'timetable/index.html')
 
 def data_for_user(request):
-    name = ''
+    state = 0
+    message = ''
+    params = []
     if request.method == "GET":
         form = Show_on_date_user(request.GET)
         if form.is_valid():
-            name_ = form.cleaned_data.get("name")
+            group_ = form.cleaned_data.get("group")
             date_ = form.cleaned_data.get("date")
-            print (name_, date_)
-            print(parse(str(date_)))
+            day_ = parse(str(date_))
+            if Table.objects.filter(group=group_, day_of_week=day_).exists():
+                message = 'Расписание для группы {} на {}'.format(group_.name, day_)
+                state = 1
+                for i in Table.objects.filter(group=group_, day_of_week=day_):
+                    params.append(i)
+            else:
+                message ='Занятий не найдено'
+                state = -1
     else:
         form = Show_on_date_user()
-    return render(request, 'timetable/data_for_user.html', {'form': form})
+        message = ''
+    return render(request, 'timetable/data_for_user.html', {'form': form, 'params': params,
+                                                            'message': message, 'state': state})
 
 def lessons_for_user(request):
     return render(request, 'timetable/lessons_for_user.html')
@@ -76,6 +87,23 @@ def new_group(request):
         'form': form, 'message': message})
 
 def new_lesson(request):
-
-    return render(request, 'timetable/new_lesson.html')
+    message = ''
+    if request.method == "POST":
+        form = AppendLesson(request.POST)
+        if form.is_valid():
+            time_ = form.cleaned_data.get("time")
+            day_of_week_ = form.cleaned_data.get("day_of_week")
+            cabinet_ = form.cleaned_data.get("cabinet")
+            group_ = form.cleaned_data.get("group")
+            teacher_ = form.cleaned_data.get("teacher")
+            lesson_ = form.cleaned_data.get("lesson")
+            message = 'Добавлено'
+            timetable = Table(time = time_, day_of_week = day_of_week_, cabinet = cabinet_, group = group_, teacher = teacher_,
+                              lesson = lesson_)
+            timetable.save()
+        else:
+            message = 'Некорректные данные'
+    else:
+        form = AppendLesson()
+    return render(request, 'timetable/new_lesson.html', {'form': form, 'message': message})
 

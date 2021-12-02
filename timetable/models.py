@@ -1,7 +1,4 @@
 from django.db import models
-from django.forms import Field
-from django.conf import settings
-from django.utils import timezone
 
 
 class Group(models.Model):
@@ -12,8 +9,6 @@ class Group(models.Model):
 class Subject(models.Model):
     sub = models.TextField()
 
-    def __str__(self):
-        return self.sub
 
 class Age(models.Model):
     age = models.CharField(max_length=20)

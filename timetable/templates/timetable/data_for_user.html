@@ -12,6 +12,8 @@
  
  <table class="main">
 
+
+
 <tr><td colspan="2">
 <div class = "to_enter"><br>Вы не авторизованы в системе. <a href="{% url 'login' %}">Войти как администратор?</a><br></div>
 </td></tr>
@@ -29,15 +31,17 @@
 
 			<a href="{% url 'lessons_for_user' %}"><div class="button">Поиск занятий по нескольким полям</div></a></td>
 </tr>
-  <tr><td colspan="3"><br><br><br><br>
+  <tr><td colspan="3"><br><br>
   <form>
    <div class="form_r auto">
 		<div class="input-form_r">
-			<h4><p>Выберите группу:<br><br> 
+
+			<h4><p>Выберите группу:<br><br>
 			</p></h4>
-            {{ form.name }}
+            <div class="custom-dropdown">
+            {{ form.group }}
 		</div>
-		
+        </div>
 		<div class="input-form_r">
 			<h4><p>Выберите дату: <br><br><input type="date" {{form.date}}</h4>
 		</div>
@@ -48,32 +52,40 @@
   </form>
   </td></tr>
      <tr><td>
-</div><br><div>
+</div><br>
+         {% if state == -1 %}
+         <div class="not_found">{{ message }}</div>
+         {% else %}
+         {{ message }}
+         {% endif %}
+
+         {% if state == 1 %}
   <table class = "rasp">
   <colgroup>
-    <col span="2">
+    <col span="4">
   </colgroup>
   <tr>
    <th>Время</th>
+      <th>Учитель</th>
     <th>Занятие</th>
 	<th>Кабинет</th>
   </tr>
-  <tr>
-    <td>14:00</td>
-    <td>Английский язык</td>
-	<td>101</td>
-  </tr>
-  <tr>
-    <td>15:00</td>
-    <td>Робототехника</td>
-	<td>312</td>
-  </tr>
-    <tr>
-    <td>16:00</td>
-    <td>Програмирование</td>
-	<td>101</td>
-  </tr>
-</table></div>
+
+      {% for i in params %}
+      <tr>
+          <td>{{ i.time }}</td>
+          <td>{{ i.teacher }}</td>
+          <td>{{ i.lesson }}</td>
+          <td>{{ i.cabinet }}</td>
+          </tr>
+        {% endfor %}
+
+</table>
+{% endif %}
+
+
+
+     </div>
 </td></tr>
 </table>
  </body>

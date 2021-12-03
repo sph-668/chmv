@@ -4,6 +4,8 @@ from .models import *
 from .mymodule import *
 
 
+
+
 def index(request):
     return render(request, 'timetable/index.html')
 
@@ -12,7 +14,7 @@ def data_for_user(request):
     message = ''
     params = []
     if request.method == "GET":
-        form = Show_on_date_user(request.GET)
+        form = Show_on_date(request.GET)
         if form.is_valid():
             group_ = form.cleaned_data.get("group")
             date_ = form.cleaned_data.get("date")
@@ -27,13 +29,64 @@ def data_for_user(request):
                 message ='Занятий не найдено'
                 state = -1
     else:
-        form = Show_on_date_user()
+        form = Show_on_date()
         message = ''
     return render(request, 'timetable/data_for_user.html', {'form': form, 'params': params,
                                                             'message': message, 'state': state})
 
 def lessons_for_user(request):
-    return render(request, 'timetable/lessons_for_user.html')
+    state = 0
+    message = ''
+    params = []
+    if request.method == "GET":
+        form = Show_on_many_params(request.GET)
+        if form.is_valid():
+            group_ = form.cleaned_data.get("group")
+            if group_ == None:
+                ans = Table.objects.filter(teacher__contains ='')
+            else:
+                ans = Table.objects.filter(group = group_)
+            lesson_ = form.cleaned_data.get("lesson")
+            if lesson_ == '':
+                ans = ans.filter(lesson__contains = '')
+            else:
+                ans = ans.filter(lesson=lesson_)
+            teacher_ = form.cleaned_data.get("teacher")
+            if teacher_ == '':
+                ans = ans.filter(teacher__contains = '')
+            else:
+                ans = ans.filter(teacher=teacher_)
+            cabinet_ = form.cleaned_data.get("cabinet")
+            if cabinet_ == '':
+                ans = ans.filter(teacher__contains='')
+            else:
+                ans = ans.filter(cabinet=cabinet_)
+            time_ = form.cleaned_data.get("time")
+            if time_ == '':
+                ans = ans.filter(time__contains='')
+            else:
+                ans = ans.filter(time=time_)
+            date_ = form.cleaned_data.get("date")
+            #age_ = form.cleaned_data.get("age")
+            #print(group_, lesson_, teacher_, cabinet_, time_, date_, age_)
+            if date_ != None:
+                day_ = parse(str(date_))
+                ans = ans.filter(day_of_week=day_)
+
+
+            for i in ans:
+                params.append(i)
+            if params == []:
+                state = -1
+                message = 'Ничего не найдено'
+            else:
+                state = 1
+
+    else:
+        form = Show_on_many_params()
+        message = ''
+    return render(request, 'timetable/lessons_for_user.html', {'form': form, 'params': params,
+                                                               'message': message, 'state': state})
 
 def enter(request):
     return render(request, 'registration/login.html')
@@ -120,3 +173,80 @@ def new_lesson(request):
         form = AppendLesson()
     return render(request, 'timetable/new_lesson.html', {'form': form, 'message': message, 'state': state})
 
+def data_for_admin(request):
+    state = 0
+    message = ''
+    params = []
+    if request.method == "GET":
+        form = Show_on_date(request.GET)
+        if form.is_valid():
+            group_ = form.cleaned_data.get("group")
+            date_ = form.cleaned_data.get("date")
+            date_to_show = str(date_)[8:] + '-' + str(date_)[5:7] + '-' + str(date_)[0:4]
+            day_ = parse(str(date_))
+            if Table.objects.filter(group=group_, day_of_week=day_).exists():
+                message = 'Расписание для группы {} на {}'.format(group_.name, date_to_show)
+                state = 1
+                for i in Table.objects.filter(group=group_, day_of_week=day_):
+                    params.append(i)
+            else:
+                message = 'Занятий не найдено'
+                state = -1
+    else:
+        form = Show_on_date()
+        message = ''
+    return render(request, 'timetable/data_for_admin.html', {'form': form, 'params': params,
+                                                            'message': message, 'state': state})
+
+def lessons_for_admin(request):
+    state = 0
+    message = ''
+    params = []
+    if request.method == "GET":
+        form = Show_on_many_params(request.GET)
+        if form.is_valid():
+            group_ = form.cleaned_data.get("group")
+            if group_ == None:
+                ans = Table.objects.filter(teacher__contains='')
+            else:
+                ans = Table.objects.filter(group=group_)
+            lesson_ = form.cleaned_data.get("lesson")
+            if lesson_ == '':
+                ans = ans.filter(lesson__contains='')
+            else:
+                ans = ans.filter(lesson=lesson_)
+            teacher_ = form.cleaned_data.get("teacher")
+            if teacher_ == '':
+                ans = ans.filter(teacher__contains='')
+            else:
+                ans = ans.filter(teacher=teacher_)
+            cabinet_ = form.cleaned_data.get("cabinet")
+            if cabinet_ == '':
+                ans = ans.filter(teacher__contains='')
+            else:
+                ans = ans.filter(cabinet=cabinet_)
+            time_ = form.cleaned_data.get("time")
+            if time_ == '':
+                ans = ans.filter(time__contains='')
+            else:
+                ans = ans.filter(time=time_)
+            date_ = form.cleaned_data.get("date")
+            # age_ = form.cleaned_data.get("age")
+            # print(group_, lesson_, teacher_, cabinet_, time_, date_, age_)
+            if date_ != None:
+                day_ = parse(str(date_))
+                ans = ans.filter(day_of_week=day_)
+
+            for i in ans:
+                params.append(i)
+            if params == []:
+                state = -1
+                message = 'Ничего не найдено'
+            else:
+                state = 1
+
+    else:
+        form = Show_on_many_params()
+        message = ''
+    return render(request, 'timetable/lessons_for_admin.html', {'form': form, 'params': params,
+                                                               'message': message, 'state': state})

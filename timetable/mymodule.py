@@ -44,3 +44,5 @@ def parse(date):
     c_o_m = code_of_month(date[5:7])
     c_o_d = int(date[8:])
     return num_to_day(code_of_day(c_o_y, c_o_m, c_o_d))
+
+

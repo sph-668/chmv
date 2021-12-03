@@ -22,68 +22,74 @@
   </p>
   </h1></td></tr>
 <tr><td colspan="2">
-			<a href="index_for_admin.html"><div class="button" background="#9754e7">Главная</div></a>
+			<a href="{% url 'index_for_admin' %}"><div class="button" background="#9754e7">Главная</div></a>
 
 			<a href=#><div class="button_active">Просмотр списка занятий на выбранную дату</div></a>
 
-			<a href='lessons_for_admin.html'><div class="button">Поиск занятий по нескольким полям</div></a>
+			<a href="{% url 'lessons_for_admin' %}"><div class="button">Поиск занятий по нескольким полям</div></a>
 			
-			<a href="new_group.html"><div class="button" background="#9754e7">Добавить новую группу</div></a>
+			<a href="{% url 'new_group' %}"><div class="button" background="#9754e7">Добавить новую группу</div></a>
 			
-			<a href="new_lesson.html"><div class="button" background="#9754e7">Добавить занятия</div></a>
+			<a href="{% url 'new_lesson' %}"><div class="button" background="#9754e7">Добавить занятия</div></a>
 			
-			<a href="new_teacher.html"><div class="button" background="#9754e7">Добавить учителя</div></a>
+			<a href="{% url 'new_teacher' %}"><div class="button" background="#9754e7">Добавить учителя</div></a>
 </tr>
-  <tr><td><br><br><br><br>
+  <tr><td colspan="3"><br><br>
   <form>
-   <div class="form_r">
+   <div class="form_r auto">
+       {% if state == -1 %}
+         <div class="not_found">{{ message }}</div>
+       {% endif %}
 		<div class="input-form_r">
-			<h4><p>Выберите группу:<br><br> 
-			<span class="custom-dropdown">
-				<select name="num" class="input-form_r input">
-				<option value="1">Пчёлки</option>
-				<option value="2">Бабочки</option>
-				<option value="3">Солнышки</option>
-				<option value="4">Звёздочки</option>
-				</select>
-			</span></p></h4>
+
+			<h4><p>Выберите группу:<br><br>
+			</p></h4>
+            <div class="custom-dropdown">
+            {{ form.group }}
 		</div>
-		
+        </div>
 		<div class="input-form_r">
-			<h4><p>Выберите дату: <br><br><input type="date" name="calendar"></h4>
+			<h4><p>Выберите дату: <br><br><input type="date" {{form.date}}</h4>
 		</div>
 		<div class="input-form_r">
 			 <input type="submit" value="Найти"></p>
 		</div>
 	</div>
   </form>
-  </td><td>
-</div><div class = "line">
+  </td></tr>
+     <tr><td>
+</div><br>
+
+
+
+         {% if state == 1 %}
+         <p align="center" style="color: white; background: rgba(0, 0, 0, 0.7); font-size:20px;"> {{ message }} </p>
   <table class = "rasp">
   <colgroup>
-    <col span="2">
+    <col span="4">
   </colgroup>
   <tr>
    <th>Время</th>
+      <th>Учитель</th>
     <th>Занятие</th>
 	<th>Кабинет</th>
   </tr>
-  <tr>
-    <td>14:00</td>
-    <td>Английский язык</td>
-	<td>101</td>
-  </tr>
-  <tr>
-    <td>15:00</td>
-    <td>Робототехника</td>
-	<td>312</td>
-  </tr>
-    <tr>
-    <td>16:00</td>
-    <td>Програмирование</td>
-	<td>101</td>
-  </tr>
-</table></div>
+
+      {% for i in params %}
+      <tr>
+          <td>{{ i.time }}</td>
+          <td>{{ i.teacher }}</td>
+          <td>{{ i.lesson }}</td>
+          <td>{{ i.cabinet }}</td>
+          </tr>
+        {% endfor %}
+
+</table>
+{% endif %}
+
+
+
+     </div>
 </td></tr>
 </table>
  </body>

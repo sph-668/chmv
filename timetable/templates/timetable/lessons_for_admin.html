@@ -22,107 +22,108 @@
   </p>
   </h1></td></tr>
 <tr><td colspan="2">
-			<a href="index_for_admin.html"><div class="button" background="#9754e7">Главная</div></a>
+			<a href="{% url 'index_for_admin' %}"><div class="button" background="#9754e7">Главная</div></a>
 
-			<a href="data_for_admin.html"><div class="button">Просмотр списка занятий на выбранную дату</div></a>
+			<a href="{% url 'data_for_admin' %}"><div class="button">Просмотр списка занятий на выбранную дату</div></a>
 
 			<a href=#><div class="button_active">Поиск занятий по нескольким полям</div></a>
 			
-			<a href="new_group.html"><div class="button" background="#9754e7">Добавить новую группу</div></a>
+			<a href="{% url 'new_group' %}"><div class="button" background="#9754e7">Добавить новую группу</div></a>
 			
-			<a href="new_lesson.html"><div class="button" background="#9754e7">Добавить занятия</div></a>
+			<a href="{% url 'new_lesson' %}"><div class="button" background="#9754e7">Добавить занятия</div></a>
 			
-			<a href="new_teacher.html"><div class="button" background="#9754e7">Добавить учителя</div></a>
+			<a href="{% url 'new_teacher' %}"><div class="button" background="#9754e7">Добавить учителя</div></a>
 </tr>
-  <tr><td><br><br><br><br>
-  <form>
-   <div class="form_r">
-		<div class="input-form_r line">
-			<h4><p>Группа:<br><br> 
-			<span class="custom-dropdown">
-				<select name="num" class="input-form_r input">
-				<option value="1">-не выбрано-</option>
-				<option value="2">Бабочки</option>
-				<option value="3">Звёздочки</option>
-				<option value="4">Пчёлки</option>
-				</select>
-			</span></p></h4>
+  <tr><td><br><br><br>
+  <form method="get">
+      {% csrf_token %}
+  <table class="form_r auto">
+	  {% if state == -1 %}
+	  <tr><td colspan="3"><p align="center" style="color: #FF0000; background: rgba(0, 0, 0, 0.7); font-size:20px;"><strong>{{ message }}</strong></p></td></tr>
+	  {% endif %}
+  <tr><td>
+
+	<div class="input-form_r">
+			<h4><p>Группа:<br><br>
+                <div class="custom-dropdown">
+			{{ form.group }}
+            </div>
+            </p></h4>
 		</div>
-		
-		<div class="input-form_r line">
-			<h4>Направление:<br><br> 
-			<span class="custom-dropdown">
-				<select name="дуыыщт" class="input-form_r input">
-				<option value="1">-не выбрано-</option>
-				<option value="2">Робототехника</option>
-				<option value="3">Мелкая моторика</option>
-				<option value="4">Подготовка к школе</option>
-				</select>
-			</span></h4>
+	</td>
+	<td>
+	<div class="input-form_r">
+			<h4>Направление:<br><br>
+                <div class="custom-dropdown">
+			{{ form.lesson }}
+                </div>
+            </h4>
 		</div>
-		
+	</td>
+	<td>
+	<div class="input-form_r close">
+			<h4><p>Учитель<br><br>
+                <div class="custom-dropdown">
+			{{ form.teacher }}
+            </div>
+            </p></h4>
+		</div>
+	</td>
+	</tr>
+	<tr><td>
 		<div class="input-form_r">
-			<h4><p>Учитель<br><br> 
-			<span class="custom-dropdown">
-				<select name="teacher" class="input-form_r input">
-				<option value="1">-не выбрано-</option>
-				<option value="2">Алыпова А.С</option>
-				<option value="3">Неклюдова Е.А</option>
-				<option value="4">Ляпина С.В.</option>
-				</select>
-			</span></p></h4>
+			<h4><p>Кабинет<br><br>
+                <div class="custom-dropdown">
+			{{ form.cabinet }}
+            </div>
+            </p></h4>
 		</div>
-		
+	</td>
+	<td>
 		<div class="input-form_r">
-			<h4><p>Возрастная категория:<br><br> 
-			<span class="custom-dropdown">
-				<select name="age" class="input-form_r input">
-				<option value="1">-не выбрано-</option>
-				<option value="2">2-3 года</option>
-				<option value="3">4-5 лет</option>
-				<option value="4">6-7 лет</option>
-				</select>
-			</span></p></h4>
+			<h4><p>Время:<br><br>
+                <div class="custom-dropdown">
+			{{ form.time }}
+            </div>
+            </p></h4>
 		</div>
-		
+	</td>
+	<td>
 		<div class="input-form_r">
-			<h4><p>Дата: <br><br><input type="date" name="calendar"></h4>
+			<h4><p>Дата:<br><br>
+                <br><input type="date" {{form.date}}
+			</p></h4>
 		</div>
+	</td>
+	</tr>
+	<tr><td colspan="3">
 		<div class="input-form_r">
 			 <input type="submit" value="Найти"></p>
 		</div>
-	</div>
-  </form></td><td>
-  <table class = "rasp">
-  <colgroup>
-    <col span="4">
-  </colgroup>
-  <tr>
-  <th>Дата</th>
-   <th>Время</th>
-    <th>Занятие</th>
-	<th>Кабинет</th>
-  </tr>
-  <tr>
-	<td>23.10</td>
-    <td>12:00</td>
-    <td>Английский язык</td>
-	<td>101</td>
-  </tr>
-  <tr>
-    <td>23.10</td>
-    <td>14:00</td>
-    <td>Английский язык</td>
-	<td>101</td>
-  </tr>
-    <tr>
-    <td>24.10</td>
-    <td>14:00</td>
-    <td>Английский язык</td>
-	<td>101</td>
-  </tr>
+	</td></tr>
+
+  </table>
+  </form>
+		{% if state == 1 %}
+		<table class = "rasp">
+		<tr><td>День недели</td><td>Время</td><td>Группа</td><td>Занятие</td><td>Учитель</td><td>Кабинет</td></tr>
+		{% for i in params %}
+			<tr>
+				<td>{{ i.day_of_week }}</td>
+				<td>{{ i.time }}</td>
+				<td>{{ i.group.name }}</td>
+				<td>{{ i.lesson }}</td>
+				<td>{{ i.teacher }}</td>
+				<td>{{ i.cabinet }}</td>
+		</tr>
+
+		{% endfor %}
 </table>
-</td></tr>
+		 {% endif %}
+
+
+
+  </td></tr>
 </table>
  </body>
 </html>

@@ -34,7 +34,7 @@ td {
 
 
 .main {
-	width: 80%;	
+	width: 80%;
 	background: rgba(255, 255, 255, 0.5);
 }
 
@@ -44,7 +44,7 @@ td {
 	background: rgba(255, 255, 255, 0.7);
 	width: 80%;
 	margin: auto;
-	
+
 }
 
 .to_enter {
@@ -253,7 +253,7 @@ td {
   color: #fff;
   font-size: inherit;
   padding: .5em;
-  padding-right: 2.5em;	
+  padding-right: 2.5em;
   border: 1px solid white;
   margin: 0;
   border-radius: 3px;
@@ -267,7 +267,7 @@ display: inline-block;
 }
 
 .auto {
-	
+
 	margin:auto;
 }
 
@@ -294,7 +294,7 @@ display: inline-block;
 }
 
 .rasp td {
-   padding: 30px;
+   padding: 20px;
    text-align: center;
    align:center;
 }

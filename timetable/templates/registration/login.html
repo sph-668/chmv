@@ -15,6 +15,10 @@
 <a href="{% url 'index' %}"><div class="btn_to_index">На главную</div></a>
 
 	<form method="POST" action="" class="form" >{% csrf_token %}
+		{% if form.errors %}
+  <p align="center" style="color: #FF0000; background: rgba(0, 0, 0, 0.7); font-size:20px;"><strong>Неверный логин или пароль</strong></p>
+{% endif %}
+
 		<h1>Вход</h1>
 		  <div class="input-form">
 			  {{ form.username }}
@@ -25,9 +29,7 @@
 		<div class="input-form">
 			<input type="submit" value="Войти">
 		</div>
-		{% if form.errors %}
-  <p align="center" style="color: #FF0000"><strong>Неверный логин или пароль</strong></p>
-{% endif %}
+
 	</form>
 <br>
 

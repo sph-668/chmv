@@ -88,6 +88,7 @@ def new_group(request):
 
 def new_lesson(request):
     message = ''
+    state = 0
     if request.method == "POST":
         form = AppendLesson(request.POST)
         if form.is_valid():
@@ -97,13 +98,24 @@ def new_lesson(request):
             group_ = form.cleaned_data.get("group")
             teacher_ = form.cleaned_data.get("teacher")
             lesson_ = form.cleaned_data.get("lesson")
-            message = 'Добавлено'
-            timetable = Table(time = time_, day_of_week = day_of_week_, cabinet = cabinet_, group = group_, teacher = teacher_,
+            if (Table.objects.filter(group=group_, day_of_week=day_of_week_, time = time_).exists()):
+                message = 'В это время у группы {} уже есть занятия'.format(group_.name)
+                state = -1
+            elif (Table.objects.filter(cabinet=cabinet_, time=time_, day_of_week=day_of_week_).exists()):
+                message = 'В это время кабинет {} занят'.format(cabinet_)
+                state = -1
+            elif (not Teacher.objects.filter(name=teacher_, lesson=lesson_).exists()):
+                message = '{} не преподает такой предмет'.format(teacher_)
+                state = -1
+            else:
+                message = 'Добавлено'
+                state = 1
+                timetable = Table(time = time_, day_of_week = day_of_week_, cabinet = cabinet_, group = group_, teacher = teacher_,
                               lesson = lesson_)
-            timetable.save()
+                timetable.save()
         else:
             message = 'Некорректные данные'
     else:
         form = AppendLesson()
-    return render(request, 'timetable/new_lesson.html', {'form': form, 'message': message})
+    return render(request, 'timetable/new_lesson.html', {'form': form, 'message': message, 'state': state})
 

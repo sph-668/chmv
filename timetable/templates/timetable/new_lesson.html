@@ -29,16 +29,21 @@
 
 			<a href='lessons_for_admin.html'><div class="button">Поиск занятий по нескольким полям</div></a>
 			
-			<a href="new_group.html"><div class="button" background="#9754e7">Добавить новую группу</div></a>
+			<a href="{% url 'new_group' %}"><div class="button" background="#9754e7">Добавить новую группу</div></a>
 			
 			<a href=#><div class="button_active" background="#9754e7">Добавить занятия</div></a>
 			
-			<a href="new_teacher.html"><div class="button" background="#9754e7">Добавить учителя</div></a>
+			<a href="{% url 'new_teacher' %}"><div class="button" background="#9754e7">Добавить учителя</div></a>
 </td></tr>
   <tr><td><br><br><br>
   <form method="post">
       {% csrf_token %}
   <table class="form_r auto">
+	  {% if state == -1 %}
+	  <tr><td colspan="3"><p align="center" style="color: #FF0000; background: rgba(0, 0, 0, 0.7); font-size:20px;"><strong>{{ message }}</strong></p></td></tr>
+	  {% else %}
+	  <tr><td colspan="3"><p align="center" style="color: white; background: rgba(0, 0, 0, 0.7); font-size:20px;"><strong>{{ message }}</strong></p></td></tr>
+	  {% endif %}
   <tr><td>
 
 	<div class="input-form_r">

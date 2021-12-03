@@ -16,9 +16,10 @@ def data_for_user(request):
         if form.is_valid():
             group_ = form.cleaned_data.get("group")
             date_ = form.cleaned_data.get("date")
+            date_to_show = str(date_)[8:] + '-' + str(date_)[5:7] + '-' + str(date_)[0:4]
             day_ = parse(str(date_))
             if Table.objects.filter(group=group_, day_of_week=day_).exists():
-                message = 'Расписание для группы {} на {}'.format(group_.name, day_)
+                message = 'Расписание для группы {} на {}'.format(group_.name, date_to_show)
                 state = 1
                 for i in Table.objects.filter(group=group_, day_of_week=day_):
                     params.append(i)

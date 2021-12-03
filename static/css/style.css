@@ -31,6 +31,8 @@ td {
    align:center;
 }
 
+
+
 .main {
 	width: 80%;	
 	background: rgba(255, 255, 255, 0.5);
@@ -242,6 +244,7 @@ td {
   background: rgba(255,255,255,0.8);
   border: 1px solid black;
   font-size: 20px;
+  border-spacing: 7px 5px;
 }
 
 .custom-dropdown select {
@@ -288,4 +291,10 @@ display: inline-block;
 	font-family: Arial;
 	font-weight: bold;
 	background: rgba(0, 0, 0, 0.7);
+}
+
+.rasp td {
+   padding: 30px;
+   text-align: center;
+   align:center;
 }

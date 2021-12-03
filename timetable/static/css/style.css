@@ -237,9 +237,8 @@ td {
 }
 
 .rasp{
-	margin-top: 60px;
-	width: 450px;
-  height: 300px;
+	margin-top: 30px;
+	width: 650px;
   background: rgba(255,255,255,0.8);
   border: 1px solid black;
   font-size: 20px;

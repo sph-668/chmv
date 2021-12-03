@@ -34,6 +34,9 @@
   <tr><td colspan="3"><br><br>
   <form>
    <div class="form_r auto">
+       {% if state == -1 %}
+         <div class="not_found">{{ message }}</div>
+       {% endif %}
 		<div class="input-form_r">
 
 			<h4><p>Выберите группу:<br><br>
@@ -53,11 +56,8 @@
   </td></tr>
      <tr><td>
 </div><br>
-         {% if state == -1 %}
-         <div class="not_found">{{ message }}</div>
-         {% else %}
-         {{ message }}
-         {% endif %}
+
+
 
          {% if state == 1 %}
   <table class = "rasp">

@@ -12,7 +12,7 @@ Field.default_error_messages = {
 
 class MyModelChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
-        return "%s" % obj.name
+        return "{} ({})".format(obj.name, obj.age)
 
 
 class MyModelChoiceField1(ModelChoiceField):

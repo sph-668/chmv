@@ -95,6 +95,7 @@ def index_for_admin(request):
     return render(request, 'timetable/index_for_admin.html')
 
 def new_teacher(request):
+    state = 0
     message = ''
     if request.method == "POST":
         form = AppendTeacher(request.POST)
@@ -103,21 +104,26 @@ def new_teacher(request):
             lesson_ = form.cleaned_data.get("lesson")
             s = name_.replace(' ', '')
             if (not s.isalpha()):
-                message = 'Некорректные данные'
+                message = 'Имя должно содержать только символы'
+                state = -1
             elif Teacher.objects.filter(name=name_, lesson=lesson_).exists():
                 message = 'Эти данные уже были добавлены ранее'
+                state = -1
             else:
                 message = 'Добавлено'
+                state = 1
                 teacher = Teacher(name = name_, lesson = lesson_)
                 teacher.save()
         else:
             message = 'Некорректные данные'
+            state = -1
     else:
         form = AppendTeacher()
     return render(request, 'timetable/new_teacher.html',{
-          'form': form, 'message': message})
+          'form': form, 'message': message, 'state': state})
 
 def new_group(request):
+    state = 0
     message = ''
     if request.method == "POST":
         form = AppendGroup(request.POST)
@@ -126,19 +132,23 @@ def new_group(request):
             age_ = form.cleaned_data.get("age")
             print()
             if (not name_.isalpha()):
-                message = 'Некорректные данные'
+                message = 'Название группы должно содержать только символы'
+                state = -1
             elif Group.objects.filter(name=name_).exists():
                 message = 'Такая группа уже существует'
+                state = -1
             else:
                 message = 'Добавлено'
+                state = 1
                 group = Group(name = name_, age = age_)
                 group.save()
         else:
+            state = -1
             message = 'Некорректные данные'
     else:
         form = AppendGroup()
     return render(request, 'timetable/new_group.html', {
-        'form': form, 'message': message})
+        'form': form, 'message': message, 'state': state})
 
 def new_lesson(request):
     message = ''

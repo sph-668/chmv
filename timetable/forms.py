@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy
 Field.default_error_messages = {
     'required': ugettext_lazy("This field is mandatory."),
 }
-
+# this is gonna work
 class MyModelChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
         return "{} ({})".format(obj.name, obj.age)
